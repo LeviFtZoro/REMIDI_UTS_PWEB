@@ -16,8 +16,14 @@
 
         <!-- Main Content -->
         <div class="flex-grow-1 p-4">
-            <h1 class="mb-4">Daftar Produk</h1>
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
 
+            <h1 class="mb-4">Daftar Produk</h1>
             <table class="table table-bordered">
                 <thead class="table-light">
                     <tr>
@@ -53,6 +59,6 @@
             </table>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

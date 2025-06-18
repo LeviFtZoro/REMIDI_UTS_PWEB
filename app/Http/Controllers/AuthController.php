@@ -20,9 +20,9 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             if (Auth::user()->role === 'admin') {
-                return redirect()->route('admin.products.index');
+                return redirect()->route('admin.products.index')->with('success', 'Login berhasil.');
             } else {
-                return redirect()->route('user.products.index');
+                return redirect()->route('user.products.index')->with('success', 'Login berhasil.');
             }
         }
 

@@ -8,7 +8,7 @@
         <li class="nav-item mb-2">
           <a href="{{ route('admin.products.index') }}"
              class="nav-link text-white ps-3 {{ request()->routeIs('admin.products.index') ? 'bg-dark rounded' : '' }}">
-            Kelola Produk
+            Lihat Produk
           </a>
         </li>
         <li class="nav-item mb-2">
