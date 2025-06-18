@@ -30,9 +30,7 @@
                         <th>Nama</th>
                         <th>Harga</th>
                         <th>Stok</th>
-                        @if(Auth::user()->role === 'user')
-                            <th>Aksi</th>
-                        @endif
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,8 +39,8 @@
                             <td>{{ $product->name }}</td>
                             <td>Rp {{ number_format($product->price, 0, ',', '.') }}</td>
                             <td>{{ $product->stock }}</td>
-                            @if(Auth::user()->role === 'user')
-                                <td>
+                            <td>
+                                @if(Auth::user()->role === 'user')
                                     @if($product->stock > 0)
                                         <form method="POST" action="{{ route('products.buy', $product->id) }}">
                                             @csrf
@@ -51,8 +49,15 @@
                                     @else
                                         <span class="text-danger">Stok habis</span>
                                     @endif
-                                </td>
-                            @endif
+                                @elseif(Auth::user()->role === 'admin')
+                                    <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger btn-sm">Hapus</button>
+                                    </form>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
