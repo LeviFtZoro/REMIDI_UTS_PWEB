@@ -28,6 +28,7 @@
                 <thead class="table-light">
                     <tr>
                         <th>Nama</th>
+                        <th>Deskripsi</th>
                         <th>Harga</th>
                         <th>Stok</th>
                         <th>Aksi</th>
@@ -37,6 +38,7 @@
                     @foreach ($products as $product)
                         <tr>
                             <td>{{ $product->name }}</td>
+                            <td>{{ $product->description }}</td>
                             <td>Rp {{ number_format($product->price, 0, ',', '.') }}</td>
                             <td>{{ $product->stock }}</td>
                             <td>
