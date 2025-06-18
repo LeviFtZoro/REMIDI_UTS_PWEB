@@ -28,3 +28,6 @@ Route::middleware(['auth', 'is_user'])->group(function () {
     Route::post('/products/{id}/beli', [ProductController::class, 'beli'])->name('products.buy');
 });
 
+// Register
+Route::get('/register', [AuthController::class, 'registerForm'])->name('register.form');
+Route::post('/register', [AuthController::class, 'register'])->name('register');

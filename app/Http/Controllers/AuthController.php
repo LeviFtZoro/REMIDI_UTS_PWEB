@@ -37,4 +37,27 @@ class AuthController extends Controller
 
         return redirect('/login');
     }
+
+    public function registerForm()
+    {
+        return view('auth.register');
+    }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:user,email',
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+        \App\Models\User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role' => 'user',
+        ]);
+
+        return redirect('/login')->with('success', 'Pendaftaran berhasil, silakan login.');
+    }
 }
